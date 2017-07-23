@@ -15,6 +15,11 @@
 
   <body>
 
+	<%= render "shared/navbar" %>
+	<br>
+	<br>
+	<br>
+	<br>
 
  	<div class="container" id="main-container">
 		<div id="notice">
@@ -25,17 +30,9 @@
 
 	</div>
 
+	<%= render 'shared/footer' %>
 
-
-	<footer class="text-center">
-		<strong>
-			<%= link_to "#", about_us_path %> -
-			<%= link_to "#", "mailto:bigpudu@gmail.com", data: {toggle: "tooltip", title: "bigpudu@gmail.com"} %>
-		</strong>
-	</footer>
-
-
-
+	<%= debug(params) if Rails.env.development? %>
 
   </body>
 </html>

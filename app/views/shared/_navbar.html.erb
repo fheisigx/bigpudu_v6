@@ -1,0 +1,71 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-links" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="nohover navbar-brand" href="<%= root_path %>">BigPudu</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar-links">
+    <% if logged_in? %>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to "<span class=' glyphicon glyphicon-search'></span>".html_safe, '#', class: "nohover"%>
+        </li>
+
+
+        <li class="dropdown">
+          <%= link_to "<span class=' glyphicon glyphicon-user'></span>".html_safe, "#", id: "account-dropdown", class: "nohover dropdown-toggle", data: {toggle: "dropdown"} %>
+          <ul class="dropdown-menu" id="account-dropdown-ul">
+            <li class="dropdown-header text-center"><%= current_user.name %></li>
+            <li>
+              <a href="<%= root_path %>">Home</a>
+            </li>       
+            <li>
+              <a href="<%= '#' %>">Mi horario </a>
+            </li>       
+            <li>
+              <a href="<%= '#'%>">Mis solicitudes </a>
+            </li>       
+            <li>
+              <a href="<%= '#' %>">Mis ramos </a>
+            </li>       
+            
+            <li>
+              <a href="<%= '#' %>">Mi cuenta </a>
+            </li>   
+            
+            <li class="divider"></li>   
+            <% if current_user.is_admin? %>
+              <li>
+                <%= link_to "Admin", '#' %>
+              </li>
+            <% end %>
+            <li>
+              <a id="logout" href="<%= logout_path %>" data-method="delete">Cerrar sesión</a>
+            </li>       
+          </ul>
+        </li>
+        
+      </ul> 
+    <% else %>
+      <ul class="nav navbar-nav navbar-right">
+            <li <%= "class=active" if params[:controller] == "users" && params[:action] == "new" %>>
+              <a class="nohover" href="<%= signup_path %>">Regístrate</a>       
+            </li>
+            
+            <li <%= "class=active" if params[:controller] == "sessions" && params[:action] == "new" %>>
+              <a class="nohover" href="<%= login_path %>" role="button">Ingresa</a> 
+            </li>
+            
+        </ul>
+    <% end %>
+
+    </div><!-- /.navbar-collapse -->
+
+  </div>
+</nav>

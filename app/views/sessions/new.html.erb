@@ -1,0 +1,39 @@
+<div class="row">
+	<div class="col-md-4 col-md-offset-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong>Iniciar sesión</strong>
+			</div>
+			
+			<div class="panel-body">
+				
+				<% if @error.present? %>
+					<div class="alert alert-danger">
+						<%= @error %>
+					</div>
+				<% end %>
+
+				<!-- Podría ser con un form_for (como en el TutorialBook) -->
+				<%= form_tag signin_path, class: "login-form" do %>					
+
+					<div class="form-group">
+						<%= label_tag :email, "Tu correo" %>
+						<%= email_field_tag :email, nil, class: 'form-control', required: true , autofocus: true %>
+					</div>
+
+					<div class="form-group">
+						<%= label_tag :password, "Tu contraseña" %>
+						<%= password_field_tag :password, nil, class: 'form-control', required: true %>
+					</div>
+
+					<%= submit_tag "Ingresa", class: "btn btn-block btn-primary" %>
+
+					<div class="text-center help-block">
+						¿No tienes cuenta?
+						<%= link_to "Regístrate", signup_path %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

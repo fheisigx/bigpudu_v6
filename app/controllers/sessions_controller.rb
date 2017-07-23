@@ -50,17 +50,33 @@ class SessionsController < ApplicationController
 		
 	end	
 
-	# Login
+	# Login - Ok
 	def new
-		
+		@user = User.new
 	end
 
+	#OK
 	def create
-		
+	    user = User.find_by(email: params[:email].downcase)
+	    if user && user.authenticate(params[:password])
+	      # Log the user in and redirect to the user's show page.
+	      log_in user
+	      flash[:success] = "Bienvenido, #{user.name}"
+
+	      redirect_to user
+	    else
+	      # Create an error message.
+	      @error = "Email/contraseña incorrectos"
+
+	      #Se puede utilizar la siguiente línea tambien:
+	      #flash.now[:danger] = "Email/contraseña incorrectos"
+	      render 'new'
+	  	end		
 	end
 
 	def destroy
-		
+	    log_out
+	    redirect_to root_url
 	end
 
 	def counter

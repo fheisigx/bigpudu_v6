@@ -1,0 +1,10 @@
+<% if @user.errors.present? %>
+	<div class="alert alert-danger">
+		<%= @user.errors.count if @user.errors.count != 1 %> Error<%= "es" if @user.errors.count > 1 %>:
+		<ul>
+			<% @user.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
