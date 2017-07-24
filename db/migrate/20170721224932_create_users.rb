@@ -3,7 +3,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
     create_table :users do |t|
       t.string :email
       t.string :password_digest
-      t.string :remember_token
+      t.string :remember_digest
       t.string :name
       t.boolean :is_teacher, default: false
       t.boolean :is_admin, default: false
@@ -11,6 +11,6 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
     add_index :users, :email
-    add_index :users, :remember_token
+    add_index :users, :remember_digest
   end
 end
