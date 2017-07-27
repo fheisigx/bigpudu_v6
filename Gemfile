@@ -36,8 +36,12 @@ gem 'bootstrap-sass', '~> 3.3.6'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-#Necesaria para para Heroku
+#Necesaria para Heroku
 gem 'rails_12factor', group: :production
+
+#Para popular la base de datos con cosas falsas y así hacer pruebas
+gem 'faker',          '1.7.3'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

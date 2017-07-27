@@ -22,12 +22,10 @@
           <%= link_to "<span class=' glyphicon glyphicon-user'></span>".html_safe, "#", id: "account-dropdown", class: "nohover dropdown-toggle", data: {toggle: "dropdown"} %>
           <ul class="dropdown-menu" id="account-dropdown-ul">
             <li class="dropdown-header text-center"><%= current_user.name %></li>
-            <li>
-              <a href="<%= root_path %>">Home</a>
-            </li>       
-            <li>
-              <a href="<%= '#' %>">Mi horario </a>
-            </li>       
+            <li><%= link_to "Profile", current_user %></li>       
+            <li> <%= link_to "Settings", edit_user_path(current_user) %> </li>   
+            <li><%= link_to "Users", users_path %></li>
+    
             <li>
               <a href="<%= '#'%>">Mis solicitudes </a>
             </li>       
