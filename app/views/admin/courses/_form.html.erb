@@ -1,0 +1,14 @@
+<%= form_for([:admin, @institution, @course], html: {class: "form-isnline"}) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :code_name, "Codigo del Curso" %>
+    <%= f.text_field :code_name, class: 'form-control', autofocus: true %>
+    <%= f.label :name, "Nombre del Curso" %>
+    <%= f.text_field :name, class: 'form-control'%>
+    <%= f.label :area_id, "Area Conocimiento" %>
+    <%= f.select(:area_id, @areas.map {|b| [b.name, b.id]})  %>
+    <%= f.hidden_field :institution_id, :value => @institution.id %>
+  </div>
+
+  <%= f.submit yield(:button_text), class: "btn btn-block btn-primary" %>
+<% end %>

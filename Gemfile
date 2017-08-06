@@ -36,6 +36,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Para resumir las rutas disponibles y modelos
+gem 'annotate'
+
 #Necesaria para Heroku
 gem 'rails_12factor', group: :production
 

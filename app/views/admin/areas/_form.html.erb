@@ -1,0 +1,9 @@
+<%= form_for([:admin, @area], html: {class: "form-isnline"}) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :name, "Nombre de la Area" %>
+    <%= f.text_field :name, class: 'form-control', autofocus: true %>
+  </div>
+
+  <%= f.submit yield(:button_text), class: "btn btn-block btn-primary" %>
+<% end %>

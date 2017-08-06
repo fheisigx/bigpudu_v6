@@ -1,0 +1,27 @@
+<h2>Todas las Areas</h2>
+
+<%= link_to("Add New Area", {:action => 'new'}) %>
+
+<table class="table">
+<tr class="header">
+	<th>Nombre</th>
+	<th>N° Carreras</th>
+	<th>N° Ramos</th>
+	<th>Actions</th>
+</tr>
+
+
+<% @areas.each do |area| %>
+	<tr>
+		<td> <%= area.name %> </td>
+		<td> ##</td>
+		<td> ## </td>
+		<td class="actions">
+			<%= link_to("Show", "#" ) %>
+			<%= link_to("Edit", {:action => 'edit', :id => area.id}, :class => 'action edit') %>
+			<%= link_to("Delete", {:controller => 'admin/areas',:action =>'destroy', :id => area.id }, method: :delete, data: { confirm: "You sure?" } )%>
+		</td>
+	</tr>
+	<% end %>
+
+</table>

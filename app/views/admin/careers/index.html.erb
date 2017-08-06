@@ -1,0 +1,31 @@
+<h2>Carreras de <%= @institution.name %></h2>
+
+<%= link_to("Add New Career", {:action => 'new'}) %>
+
+<table class="table">
+<tr class="header">
+	<th>Carrera</th>
+	<th>N° Ramos</th>
+	<th>N° Alumnos</th>
+	<th>N° Areas</th>
+	<th>N° Solicitudes</th>
+	<th>Acciones</th>
+</tr>
+
+
+<% @careers.each do |career| %>
+	<tr>
+		<td> <%= career.name %> </td>
+		<td> ## </td>
+		<td> ## </td>
+		<td> ## </td>
+		<td> ## </td>
+		<td class="actions">
+			<%= link_to("Show", "#" ) %>
+			<%= link_to("Edit", edit_admin_institution_career_path(id: career.id) ) %>
+			<%= link_to("Delete", {:controller => 'admin/careers',:action =>'destroy', :id => career.id }, method: :delete, data: { confirm: "You sure?" } )%>
+		</td>
+	</tr>
+	<% end %>
+
+</table>

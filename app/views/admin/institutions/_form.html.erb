@@ -1,0 +1,22 @@
+<%= form_for([:admin, @institution], html: {class: "form-inline"}) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :name, "Nombre de la Institución" %>
+    <%= f.text_field :name, class: 'form-control', autofocus: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.radio_button :level, 5, :checked => true %> 
+    <%= label :level, 'UT' %>
+    <%= f.radio_button :level, 4 %> 
+    <%= label :level, 'UP' %>
+    <%= f.radio_button :level, 3 %>
+    <%= label :level, 'IP' %>
+    <%= f.radio_button :level, 2 %>
+    <%= label :level, 'CFT' %>
+    <%= f.radio_button :level, 1 %>
+    <%= label :level, 'Colegio' %>
+  </div>
+
+  <%= f.submit yield(:button_text), class: "btn btn-block btn-primary" %>
+<% end %>

@@ -1,0 +1,31 @@
+<h2>Cursos de <%= @institution.name %></h2>
+
+<%= link_to("Add New Course", {:action => 'new'}) %>
+| <%= link_to("Agregar Area", {:controller => 'areas', :action => 'new'}) %>
+<table class="table">
+<tr class="header">
+	<th>Nombre Cod</th>
+	<th>Nombre Curso</th>
+	<th>Area</th>
+	<th>N° Profesores </th>
+	<th>N° Solicitudes</th>
+	<th>Acciones</th>
+</tr>
+
+
+<% @courses.each do |course| %>
+	<tr>
+		<td> <%= course.code_name %> </td>
+		<td> <%= course.name %> </td>
+		<td> <%= course.area.name %>  </td>
+		<td> ## </td>
+		<td> ## </td>
+		<td class="actions">
+			<%= link_to("Show", "#" ) %>
+			<%= link_to("Edit", edit_admin_institution_course_path(id: course.id) ) %>
+			<%= link_to("Delete", {:controller => 'admin/courses',:action =>'destroy', :id => course.id }, method: :delete, data: { confirm: "You sure?" } )%>
+		</td>
+	</tr>
+	<% end %>
+
+</table>
