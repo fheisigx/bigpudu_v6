@@ -1,0 +1,13 @@
+<%= form_for([:admin, @master_career_area], html: {class: "form-isnline"}) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :master_career_id, "Carrera Maestra" %>
+    <%= f.select(:master_career_id, @master_careers.map {|a| [a.name, a.id]})  %>
+    <%= f.label :area_id, "Area Conocimiento" %>
+    <%= f.select(:area_id, @areas.map {|b| [b.name, b.id]})  %>
+    <%= f.label :level, "Nivel de Experticie en dicha area" %>
+    <%= f.text_field :level, class: 'form-control'%>
+  </div>
+
+  <%= f.submit yield(:button_text), class: "btn btn-block btn-primary" %>
+<% end %>

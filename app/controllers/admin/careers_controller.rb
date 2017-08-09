@@ -11,11 +11,13 @@ class Admin::CareersController < Admin::BaseController
   end
 
   def new
+    @master_careers = MasterCareer.all
   	@career = Career.new()
   end
 
 
   def create
+    @master_careers = MasterCareer.all
   	@career = Career.new(career_params)
 
     #Save de object
@@ -31,10 +33,12 @@ class Admin::CareersController < Admin::BaseController
 
 
   def edit
+    @master_careers = MasterCareer.all
     @career = Career.find(params[:id]) 
   end
 
   def update
+    @master_careers = MasterCareer.all
     #Find an existing object using form parameters
     @career = Career.find(params[:id])
     #Update de object
@@ -60,6 +64,6 @@ class Admin::CareersController < Admin::BaseController
   end
 
   def career_params 
-    params.require(:career).permit(:name, :institution_id)
+    params.require(:career).permit(:name, :institution_id, :master_career_id)
   end
 end

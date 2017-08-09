@@ -1,6 +1,10 @@
 # == Route Map
 #
 #                        Prefix Verb   URI Pattern                                                    Controller#Action
+#    admin_master_careers_index GET    /admin/master_careers/index(.:format)                          admin/master_careers#index
+#     admin_master_careers_show GET    /admin/master_careers/show(.:format)                           admin/master_careers#show
+#      admin_master_careers_new GET    /admin/master_careers/new(.:format)                            admin/master_careers#new
+#     admin_master_careers_edit GET    /admin/master_careers/edit(.:format)                           admin/master_careers#edit
 #            admin_institutions GET    /admin/institutions(.:format)                                  admin/institutions#index
 #                               POST   /admin/institutions(.:format)                                  admin/institutions#create
 #         new_admin_institution GET    /admin/institutions/new(.:format)                              admin/institutions#new
@@ -17,6 +21,14 @@
 #                               PATCH  /admin/areas/:id(.:format)                                     admin/areas#update
 #                               PUT    /admin/areas/:id(.:format)                                     admin/areas#update
 #                               DELETE /admin/areas/:id(.:format)                                     admin/areas#destroy
+#          admin_master_careers GET    /admin/master_careers(.:format)                                admin/master_careers#index
+#                               POST   /admin/master_careers(.:format)                                admin/master_careers#create
+#       new_admin_master_career GET    /admin/master_careers/new(.:format)                            admin/master_careers#new
+#      edit_admin_master_career GET    /admin/master_careers/:id/edit(.:format)                       admin/master_careers#edit
+#           admin_master_career GET    /admin/master_careers/:id(.:format)                            admin/master_careers#show
+#                               PATCH  /admin/master_careers/:id(.:format)                            admin/master_careers#update
+#                               PUT    /admin/master_careers/:id(.:format)                            admin/master_careers#update
+#                               DELETE /admin/master_careers/:id(.:format)                            admin/master_careers#destroy
 #     admin_institution_careers GET    /admin/institutions/:institution_id/careers(.:format)          admin/careers#index
 #                               POST   /admin/institutions/:institution_id/careers(.:format)          admin/careers#create
 #  new_admin_institution_career GET    /admin/institutions/:institution_id/careers/new(.:format)      admin/careers#new
@@ -68,14 +80,31 @@
 
 Rails.application.routes.draw do
 
+
   namespace :admin do
-    #post 'createinstitution', to: 'admin/institutions#create', as: :institutions
-    
-    resources :institutions, :areas
+    get 'career_courses/index'
+  end
+
+  namespace :admin do
+    get 'career_courses/new'
+  end
+
+  namespace :admin do
+    get 'career_courses/edit'
+  end
+
+  namespace :admin do
+
+    get '/', to: 'base#dashboard', as: :dashboard
+    resources :institutions, :areas, :master_careers, :master_career_areas
     
     resources :institutions do
       resources :careers
       resources :courses
+    end
+
+    resources :careers do
+      resources :career_courses
     end
 
   

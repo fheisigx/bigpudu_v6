@@ -1,0 +1,25 @@
+<h2>Todas las Carreras Maestras</h2>
+
+<%= link_to("Add New Master Career", {:action => 'new'}) %>
+
+<table class="table">
+<tr class="header">
+	<th>Nombre</th>
+	<th>Areas</th>
+	<th>Actions</th>
+</tr>
+
+
+<% @master_careers.each do |master_career| %>
+	<tr>
+		<td> <%= master_career.name %> </td>
+		<td> <%= master_career.areas.count %> </td>
+		<td class="actions">
+			<%= link_to("Show", "#" ) %>
+			<%= link_to("Edit", {:action => 'edit', :id => master_career.id}, :class => 'action edit') %>
+			<%= link_to("Delete", {:controller => 'admin/master_careers',:action =>'destroy', :id => master_career.id }, method: :delete, data: { confirm: "You sure?" } )%>
+		</td>
+	</tr>
+	<% end %>
+
+</table>

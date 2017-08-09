@@ -40,7 +40,7 @@
             <li class="divider"></li>   
             <% if current_user.is_admin? %>
               <li>
-                <%= link_to "Admin", '#' %>
+                <%= link_to "Admin", admin_dashboard_path %>
               </li>
             <% end %>
             <li>

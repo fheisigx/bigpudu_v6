@@ -1,0 +1,32 @@
+<h2>Malla de <%= @career.name %> de <%= @career.institution.name %> </h2>
+
+<%= link_to("Agregar Ramo", {:action => 'new'}) %>
+| <%=  link_to("Volver", admin_institution_careers_path(@career.institution) ) %>
+
+<table class="table">
+<tr class="header">
+	<th>Nombre Ramo</th>
+	<th>Semestre</th>
+	<th>Area</th>
+	<th>N° Profesores</th>
+	<th>N° Solicitudes</th>
+	<th>Acciones</th>
+</tr>
+
+
+<% @career_courses.each do |career_course| %>
+	<tr>
+		<td> <%= career_course.course.name %> </td>
+		<td> <%= career_course.semester %>  </td>
+		<td> <%= career_course.course.area.name %> </td>
+		<td> ## </td>
+		<td> ## </td>
+		<td class="actions">
+			<%= link_to("Show", "#" ) %>
+			<%= link_to("Edit", edit_admin_career_career_course_path(id: career_course.id) ) %>
+			<%= link_to("Delete", {:controller => 'admin/career_courses',:action =>'destroy', :id => career_course.id }, method: :delete, data: { confirm: "You sure?" } )%>
+		</td>
+	</tr>
+	<% end %>
+
+</table>

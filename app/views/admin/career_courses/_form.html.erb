@@ -1,0 +1,12 @@
+<%= form_for([:admin,@career, @career_course], html: {class: "form-isnline"}) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :course_id, "Ramo a agregar" %>
+    <%= f.select(:course_id, @courses.map {|b| [b.code_name, b.id]})  %>
+    <%= f.label :semester, "Semestre" %>
+    <%= f.text_field :semester, class: 'form-control' %>
+    <%= f.hidden_field :career_id, :value => @career.id %>
+  </div>
+
+  <%= f.submit yield(:button_text), class: "btn btn-block btn-primary" %>
+<% end %>
