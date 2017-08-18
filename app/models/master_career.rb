@@ -13,6 +13,8 @@ class MasterCareer < ApplicationRecord
 	has_many :master_career_areas
 	has_many :areas, :through => :master_career_areas
 
+	has_many :institutions, :through => :careers #probando para importar desde excel
+
 	validates :name, presence: true, uniqueness: true
 	
 end

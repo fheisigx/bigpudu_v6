@@ -21,7 +21,7 @@ class Course < ApplicationRecord
 	belongs_to :institution
 	belongs_to :area
 
-	has_many :career_courses
+	has_many :career_courses, dependent: :destroy
 	has_many :careers, :through => :career_courses
 
 	validates :code_name, presence: true, uniqueness: { scope: :institution_id }

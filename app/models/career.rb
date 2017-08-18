@@ -20,11 +20,10 @@ class Career < ApplicationRecord
 	belongs_to :institution
 	belongs_to :master_career
 
-	has_many :career_courses
+	has_many :career_courses, dependent: :destroy
 	has_many :courses, :through => :career_courses
 
-	validates :name, presence: true, uniqueness: { scope: :institution_id }
-	validates :institution_id, presence: true
-	validates :master_career_id, presence: true
+	validates :institution_id, presence: true, uniqueness: { scope: :master_career_id }
+	validates :master_career_id, presence: true, uniqueness: { scope: :institution_id }
 	
 end

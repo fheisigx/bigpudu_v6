@@ -45,6 +45,9 @@ gem 'rails_12factor', group: :production
 #Para popular la base de datos con cosas falsas y así hacer pruebas
 gem 'faker',          '1.7.3'
 
+#Para importar datos desde excel
+gem 'roo'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

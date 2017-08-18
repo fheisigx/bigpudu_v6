@@ -64,6 +64,6 @@ class Admin::CareersController < Admin::BaseController
   end
 
   def career_params 
-    params.require(:career).permit(:name, :institution_id, :master_career_id)
+    params.require(:career).permit(:institution_id, :master_career_id)
   end
 end

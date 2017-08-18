@@ -1,4 +1,4 @@
-<h2>Malla de <%= @career.name %> de <%= @career.institution.name %> </h2>
+<h2>Malla de <%= @career.master_career.name %> de <%= @career.institution.name %> </h2>
 
 <%= link_to("Agregar Ramo", {:action => 'new'}) %>
 | <%=  link_to("Volver", admin_institution_careers_path(@career.institution) ) %>

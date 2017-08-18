@@ -96,6 +96,9 @@ Rails.application.routes.draw do
   namespace :admin do
 
     get '/', to: 'base#dashboard', as: :dashboard
+
+    
+
     resources :institutions, :areas, :master_careers, :master_career_areas
     
     resources :institutions do
@@ -107,6 +110,8 @@ Rails.application.routes.draw do
       resources :career_courses
     end
 
+    post 'import_xls', to: 'base#import_xls'
+    post 'import_carreras_areas_xls', to: 'base#import_carreras_areas_xls'
   
   end
 

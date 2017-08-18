@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: career_courses
+#
+#  id         :integer          not null, primary key
+#  career_id  :integer
+#  course_id  :integer
+#  semester   :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_career_courses_on_career_id  (career_id)
+#  index_career_courses_on_course_id  (course_id)
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This model initially had no columns defined. If you add columns to the

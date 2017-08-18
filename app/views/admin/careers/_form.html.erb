@@ -1,9 +1,7 @@
 <%= form_for([:admin, @institution, @career], html: {class: "form-isnline"}) do |f| %>
 
   <div class="form-group">
-    <%= f.label :name, "Nombre de la Carrera" %>
-    <%= f.text_field :name, class: 'form-control', autofocus: true %>
-    <%= f.label :master_career_id, "Tipo de Carrera" %>
+    <%= f.label :master_career_id, "Carrera" %>
     <%= f.select(:master_career_id, @master_careers.map {|b| [b.name, b.id]})  %>
     <%= f.hidden_field :institution_id, :value => @institution.id %>
   </div>

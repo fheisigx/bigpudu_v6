@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 20170809153321) do
   end
 
   create_table "careers", force: :cascade do |t|
-    t.string "name"
     t.bigint "institution_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
