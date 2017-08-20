@@ -1,7 +1,9 @@
 class Admin::AreasController < Admin::BaseController
   
+  before_action :set_area, only: [:show, :edit, :update, :destroy]
+
   def index
-  	@areas = Area.all 
+  	@areas = Area.all.order_name
   end
 
   def show
@@ -27,12 +29,9 @@ class Admin::AreasController < Admin::BaseController
   end
 
   def edit
-    @area = Area.find(params[:id])   
   end
 
   def update
-    #Find an existing object using form parameters
-    @area = Area.find(params[:id])
     #Update de object
     if @area.update_attributes(area_params) #If update succeeds, redirect to the index action
       flash[:success] = "Area updated succesfully."
@@ -44,13 +43,18 @@ class Admin::AreasController < Admin::BaseController
 
 
  def destroy
-    Area.find(params[:id]).destroy
+    @area.destroy
     flash[:success] = "Area deleted"
     redirect_to admin_areas_path
   end
 
 
   private
+
+  def set_area
+    @area = Area.find(params[:id])  
+  end
+
   def area_params 
     params.require(:area).permit(:name)
   end

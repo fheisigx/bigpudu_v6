@@ -11,6 +11,14 @@
 
 class Institution < ApplicationRecord
 
+	INST_TYPE =[
+		["U. Tradicional", 5],
+		["U. Privada", 4],
+		["I. Profesional", 3],
+		["CFT",2],
+		["Colegio",1]
+	]
+
 	has_many :careers, dependent: :destroy
 	has_many :courses, dependent: :destroy
 
@@ -18,4 +26,10 @@ class Institution < ApplicationRecord
 
 	validates :name, presence: true, uniqueness: true
 	validates :level, presence: true
+
+	def self.order_level_inst
+		order(level: :desc, name: :asc)
+	end
+
+
 end

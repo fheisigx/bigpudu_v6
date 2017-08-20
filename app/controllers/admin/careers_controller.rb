@@ -1,9 +1,11 @@
 class Admin::CareersController < Admin::BaseController
 
   before_action :set_institution
+  before_action :set_master_careers, only: [:new, :create, :edit, :update]
+  before_action :set_career, only: [:show, :edit, :update, :destroy]
 
   def index
-  	@careers = @institution.careers
+  	@careers = @institution.careers.order_mc_name
   end
 
   def show
@@ -11,47 +13,37 @@ class Admin::CareersController < Admin::BaseController
   end
 
   def new
-    @master_careers = MasterCareer.all
   	@career = Career.new()
   end
 
 
   def create
-    @master_careers = MasterCareer.all
   	@career = Career.new(career_params)
 
-    #Save de object
-    if @career.save #If save succeeds, redirect to the index action
+    if @career.save
       flash[:success] = "Carrera creada exitosamente."
       redirect_to admin_institution_careers_path(@institution)
-      #redirect_to(:action => 'index')
-    else #If save fails, redisplay the form so user can fix problems
+    else
       render('new')
     end
 
   end
 
-
   def edit
-    @master_careers = MasterCareer.all
-    @career = Career.find(params[:id]) 
   end
 
   def update
-    @master_careers = MasterCareer.all
-    #Find an existing object using form parameters
-    @career = Career.find(params[:id])
-    #Update de object
-    if @career.update_attributes(career_params) #If update succeeds, redirect to the index action
+    
+    if @career.update_attributes(career_params)
       flash[:success] = "Institution updated succesfully."
       redirect_to admin_institution_careers_path(@institution)
-    else #If update fails, redisplay the form so user can fix problems
+    else
       render('edit')
     end
   end
 
   def destroy
-    Career.find(params[:id]).destroy
+    @career.destroy
     flash[:success] = "Carrera eliminada"
     redirect_to admin_institution_careers_path(@institution)
   end
@@ -61,6 +53,14 @@ class Admin::CareersController < Admin::BaseController
 
   def set_institution 
     @institution = Institution.find(params[:institution_id])
+  end
+
+  def set_master_careers
+    @master_careers = MasterCareer.all
+  end
+
+  def set_career
+    @career = Career.find(params[:id])
   end
 
   def career_params 

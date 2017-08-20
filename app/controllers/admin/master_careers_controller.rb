@@ -1,7 +1,9 @@
 class Admin::MasterCareersController < Admin::BaseController
-  
+
+  before_action :set_master_career, only: [:edit, :update, :destroy]
+
   def index
-  	@master_careers = MasterCareer.all
+  	@master_careers = MasterCareer.all.order_name
   end
 
   def show
@@ -30,14 +32,12 @@ class Admin::MasterCareersController < Admin::BaseController
   end
 
   def edit
-    @master_career = MasterCareer.find(params[:id])   
   end
 
 
   def update
-    #Find an existing object using form parameters
-    @master_career = MasterCareer.find(params[:id])
-    #Update de object
+
+
     if @master_career.update_attributes(master_career_params) #If update succeeds, redirect to the index action
       flash[:success] = "Carrera Maestra actualizada con exito."
       redirect_to admin_master_careers_path
@@ -47,7 +47,7 @@ class Admin::MasterCareersController < Admin::BaseController
   end
 
   def destroy
-    MasterCareer.find(params[:id]).destroy
+    @master_career.destroy
     flash[:success] = "Carrera Maestra eliminada."
     redirect_to admin_master_careers_path
   end
@@ -55,6 +55,10 @@ class Admin::MasterCareersController < Admin::BaseController
   private
   def master_career_params 
     params.require(:master_career).permit(:name)
+  end
+
+  def set_master_career
+    @master_career = MasterCareer.find(params[:id])   
   end
 
 end

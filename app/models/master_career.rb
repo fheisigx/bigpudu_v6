@@ -10,11 +10,15 @@
 
 class MasterCareer < ApplicationRecord
 	has_many :careers, dependent: :destroy
-	has_many :master_career_areas
+	has_many :master_career_areas, dependent: :destroy
 	has_many :areas, :through => :master_career_areas
 
 	has_many :institutions, :through => :careers #probando para importar desde excel
 
 	validates :name, presence: true, uniqueness: true
+	
+	def self.order_name
+    	order(name: :asc)
+  	end
 	
 end

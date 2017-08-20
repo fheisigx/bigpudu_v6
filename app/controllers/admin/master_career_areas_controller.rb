@@ -1,5 +1,9 @@
 class Admin::MasterCareerAreasController < Admin::BaseController
 
+  before_action :set_areas, only: [:new, :create, :edit, :update]
+  before_action :set_master_careers, only: [:new, :create, :edit, :update]
+  before_action :set_master_career_area, only: [:edit, :update, :destroy]
+  
   def index
   	@master_career_areas = MasterCareerArea.all
   end
@@ -12,48 +16,37 @@ class Admin::MasterCareerAreasController < Admin::BaseController
   end
 
   def new
-  	@areas = Area.all
-  	@master_careers = MasterCareer.all
   	@master_career_area = MasterCareerArea.new()
   end
 
   def create
-   	@areas = Area.all
-  	@master_careers = MasterCareer.all
   	@master_career_area = MasterCareerArea.new(master_career_area_params)
 
-    #Save de object
-    if @master_career_area.save #If save succeeds, redirect to the index action
+    if @master_career_area.save
       flash[:success] = "Relación Carrera Maestra con Area creada con exito."
       redirect_to admin_master_career_areas_path
-      #redirect_to(:action => 'index')
-    else #If save fails, redisplay the form so user can fix problems
+    else
       render('new')
     end
 
   end
 
-  def edit
-  	@areas = Area.all
-  	@master_careers = MasterCareer.all
-    @master_career_area = MasterCareerArea.find(params[:id])   
+  def edit 
   end
 
 
   def update
-    #Find an existing object using form parameters
-    @master_career_area = MasterCareerArea.find(params[:id])
-    #Update de object
-    if @master_career_area.update_attributes(master_career_area_params) #If update succeeds, redirect to the index action
+
+    if @master_career_area.update_attributes(master_career_area_params)
       flash[:success] = "Relación Carrera Maestra y Area actualizada con exito."
       redirect_to admin_master_career_areas_path
-    else #If update fails, redisplay the form so user can fix problems
+    else
       render('edit')
     end
   end
 
   def destroy
-    MasterCareerArea.find(params[:id]).destroy
+    @master_career_area.destroy
     flash[:success] = "Relación Carrera Maestra y Area eliminada."
     redirect_to admin_master_career_areas_path
   end
@@ -63,6 +56,18 @@ class Admin::MasterCareerAreasController < Admin::BaseController
   private
   def master_career_area_params 
     params.require(:master_career_area).permit(:master_career_id, :area_id, :level)
+  end
+
+  def set_areas
+    @areas = Area.all.order_name
+  end
+
+  def set_master_careers
+    @master_careers = MasterCareer.all.order_name
+  end
+
+  def set_master_career_area
+    @master_career_area = MasterCareerArea.find(params[:id])   
   end
 
 

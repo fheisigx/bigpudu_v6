@@ -5,7 +5,7 @@
 <table class="table">
 <tr class="header">
 	<th>Nombre</th>
-	<th>N° Carreras</th>
+	<th>N° Carreras Maestras</th>
 	<th>N° Ramos</th>
 	<th>Actions</th>
 </tr>
@@ -14,8 +14,8 @@
 <% @areas.each do |area| %>
 	<tr>
 		<td> <%= area.name %> </td>
-		<td> ##</td>
-		<td> ## </td>
+		<td> <%= area.master_career_areas.size %> </td>
+		<td> <%= area.courses.size %>  </td>
 		<td class="actions">
 			<%= link_to("Show", "#" ) %>
 			<%= link_to("Edit", {:action => 'edit', :id => area.id}, :class => 'action edit') %>

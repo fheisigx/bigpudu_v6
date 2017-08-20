@@ -17,7 +17,6 @@
 		<td> <%= master_career_area.area.name %> </td>
 		<td> <%= master_career_area.level %> </td>
 		<td class="actions">
-			<%= link_to("Show", "#" ) %>
 			<%= link_to("Edit", {:action => 'edit', :id => master_career_area.id}, :class => 'action edit') %>
 			<%= link_to("Delete", {:controller => 'admin/master_career_areas',:action =>'destroy', :id => master_career_area.id }, method: :delete, data: { confirm: "You sure?" } )%>
 		</td>

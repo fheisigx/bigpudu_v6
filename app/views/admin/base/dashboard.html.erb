@@ -11,9 +11,9 @@
 		<div class="panel panel-default">
 				<div class="panel-body">
 					<legend>Importar Mallas</legend>
-					<%= form_tag admin_import_xls_path, id: "upload_xls_file", multipart: true do %>
+					<%= form_tag admin_import_courses_xls_path, id: "upload_xls_file", multipart: true do %>
 						<div class="form-group">
-						  <%= file_field_tag :xls_file %>
+						  <%= file_field_tag :xls_courses_file %>
 						</div>
 						<%= submit_tag "Subir excel", class: "btn btn-primary btn-block" %>
 					<% end %>
@@ -27,9 +27,9 @@
 		<div class="panel panel-default">
 				<div class="panel-body">
 					<legend>Importar Relación Carreras-Areas </legend>
-					<%= form_tag admin_import_carreras_areas_xls_path, id: "upload_xls_file", multipart: true do %>
+					<%= form_tag admin_import_master_careers_areas_xls_path, id: "upload_xls_file", multipart: true do %>
 						<div class="form-group">
-						  <%= file_field_tag :xls_file %>
+						  <%= file_field_tag :xls_master_careers_areas_file %>
 						</div>
 						<%= submit_tag "Subir excel", class: "btn btn-primary btn-block" %>
 					<% end %>

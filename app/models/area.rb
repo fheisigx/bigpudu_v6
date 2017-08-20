@@ -9,9 +9,14 @@
 #
 
 class Area < ApplicationRecord
-	has_many :careers
-	has_many :master_career_areas
+	has_many :master_career_areas, dependent: :destroy
+	has_many :courses
+
 	has_many :master_careers, :through => :master_career_areas
 	
 	validates :name, presence: true, uniqueness: true
+
+	def self.order_name
+    	order(name: :asc)
+  	end
 end

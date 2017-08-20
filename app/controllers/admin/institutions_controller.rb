@@ -1,7 +1,9 @@
 class Admin::InstitutionsController < Admin::BaseController
   
+  before_action :set_institution, only: [:show, :edit, :update, :destroy]
+
   def index
-  	@institutions = Institution.all
+  	@institutions = Institution.all.order_level_inst
   end
 
   def show
@@ -18,36 +20,31 @@ class Admin::InstitutionsController < Admin::BaseController
   def create
   	@institution = Institution.new(institution_params)
 
-    #Save de object
-    if @institution.save #If save succeeds, redirect to the index action
+    if @institution.save
       flash[:success] = "Institution created succesfully."
       redirect_to admin_institutions_path
-      #redirect_to(:action => 'index')
-    else #If save fails, redisplay the form so user can fix problems
+    else 
       render('new')
     end
 
   end
 
   def edit
-    @institution = Institution.find(params[:id])   
   end
 
 
   def update
-    #Find an existing object using form parameters
-    @institution = Institution.find(params[:id])
-    #Update de object
-    if @institution.update_attributes(institution_params) #If update succeeds, redirect to the index action
+
+    if @institution.update_attributes(institution_params)
       flash[:success] = "Institution updated succesfully."
       redirect_to admin_institutions_path
-    else #If update fails, redisplay the form so user can fix problems
+    else 
       render('edit')
     end
   end
 
   def destroy
-    Institution.find(params[:id]).destroy
+    @institution.destroy
     flash[:success] = "Institution deleted"
     redirect_to admin_institutions_path
   end
@@ -55,6 +52,10 @@ class Admin::InstitutionsController < Admin::BaseController
   private
   def institution_params 
     params.require(:institution).permit(:name, :level)
+  end
+
+  def set_institution
+    @institution = Institution.find(params[:id])
   end
 
 end

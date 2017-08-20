@@ -110,8 +110,8 @@ Rails.application.routes.draw do
       resources :career_courses
     end
 
-    post 'import_xls', to: 'base#import_xls'
-    post 'import_carreras_areas_xls', to: 'base#import_carreras_areas_xls'
+    post 'import_courses_xls', to: 'base#import_courses_xls'
+    post 'import_master_careers_areas_xls', to: 'base#import_master_careers_areas_xls'
   
   end
 

@@ -6,16 +6,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.radio_button :level, 5, :checked => true %> 
-    <%= label :level, 'UT' %>
-    <%= f.radio_button :level, 4 %> 
-    <%= label :level, 'UP' %>
-    <%= f.radio_button :level, 3 %>
-    <%= label :level, 'IP' %>
-    <%= f.radio_button :level, 2 %>
-    <%= label :level, 'CFT' %>
-    <%= f.radio_button :level, 1 %>
-    <%= label :level, 'Colegio' %>
+    <%= f.label :level, "Tipo Institución" %>
+    <%= f.select(:level, Institution::INST_TYPE)  %>
   </div>
 
   <%= f.submit yield(:button_text), class: "btn btn-block btn-primary" %>

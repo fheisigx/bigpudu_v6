@@ -25,5 +25,9 @@ class Career < ApplicationRecord
 
 	validates :institution_id, presence: true, uniqueness: { scope: :master_career_id }
 	validates :master_career_id, presence: true, uniqueness: { scope: :institution_id }
+
+	def self.order_mc_name
+    	includes(:master_career).order('master_careers.name ASC')
+  	end
 	
 end

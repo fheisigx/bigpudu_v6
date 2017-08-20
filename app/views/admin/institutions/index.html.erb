@@ -4,8 +4,8 @@
 
 <table class="table">
 <tr class="header">
-	<th>Institución</th>
-	<th>Nivel</th>
+	<th>Tipo Institución</th>
+	<th>Nombre</th>
 	<th>Carreras</th>
 	<th>Ramos</th>
 	<th>Actions</th>
@@ -14,8 +14,8 @@
 
 <% @institutions.each do |institution| %>
 	<tr>
+		<td> <%= Institution::INST_TYPE.find {|item| item[1] == institution.level }[0] %> </td>
 		<td> <%= institution.name %> </td>
-		<td> <%= institution.level %> </td>
 		<td> <%= link_to institution.careers.count , admin_institution_careers_path(institution) %> </td>
 		<td> <%= link_to institution.courses.count , admin_institution_courses_path(institution) %> </td>
 		<td class="actions">

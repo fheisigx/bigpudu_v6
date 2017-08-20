@@ -31,4 +31,8 @@ class Course < ApplicationRecord
 
 	scope :institution, -> (institution_id) {where institution_id: institution_id} 
 
+	def self.order_name
+    	order(name: :asc)
+  	end
+
 end
