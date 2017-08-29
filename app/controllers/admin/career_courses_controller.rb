@@ -3,7 +3,7 @@ class Admin::CareerCoursesController < Admin::BaseController
   before_action :set_career_course, only: [:show, :edit, :update, :destroy]
 
   def index
-    @career_courses = @career.career_courses
+    @career_courses = @career.career_courses.order_semester_c_name
   end
 
   def new

@@ -24,4 +24,9 @@ class CareerCourse < ApplicationRecord
 	validates :career_id, presence: true, uniqueness: { scope: :course_id }
 	validates :semester, presence: true
 	
+	def self.order_semester_c_name
+		#Quizas hay forma de agrupar este orden por multiple criterio de tablas distintas
+    	order('semester ASC').includes(:course).order('courses.name ASC' )
+  	end
+
 end

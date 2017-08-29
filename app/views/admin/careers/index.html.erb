@@ -7,8 +7,8 @@
 <tr class="header">
 	<th>Carrera</th>
 	<th>N° Alumnos</th>
-	<th>N° Areas</th>
 	<th>N° Solicitudes</th>
+	<th>N° Ramos</th>
 	<th>Acciones</th>
 </tr>
 
@@ -18,7 +18,7 @@
 		<td> <%= career.master_career.name %> </td>
 		<td> ## </td>
 		<td> ## </td>
-		<td> ## </td>
+		<td> <%= career.courses.count %> </td>
 		<td class="actions">
 			<%= link_to("Ver Malla", admin_career_career_courses_path(career) ) %>
 			<%= link_to("Editar", edit_admin_institution_career_path(id: career.id) ) %>
