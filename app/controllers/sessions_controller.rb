@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+	protect_from_forgery except: :busqueda_catedras
 
 	# Página Principal
 	def welcome
@@ -22,7 +23,21 @@ class SessionsController < ApplicationController
 
 	#Cambiar mis ramos
 	def mis_ramos
+		@user = current_user
+		@institutions = Institution.includes(:courses)		
+		@user_courses = current_user.courses#.includes(:institution)
+	end
 
+	def agregar_ramos
+		@user = current_user
+		@institution = Institution.find(params[:institution_id])
+		@courses = @institution.courses.order_name	
+	end
+
+	def crear_ramos
+		@user = current_user
+		@user.attributes = {'course_ids' => []}.merge(user_course_params || {})
+		redirect_to mis_ramos_path
 	end
 
 	#Cambiar mis horarios
@@ -39,7 +54,7 @@ class SessionsController < ApplicationController
 	end
 
 	def busqueda_catedras
-		
+
 	end
 
 	def oauth_connect
@@ -87,5 +102,12 @@ class SessionsController < ApplicationController
 	def about_us
 		
 	end
+
+	private
+
+		def user_course_params 
+    		params.require(:user).permit({course_ids: []})
+  		end
+		
 
 end

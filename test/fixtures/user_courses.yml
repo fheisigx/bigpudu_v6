@@ -1,13 +1,13 @@
 # == Schema Information
 #
-# Table name: master_career_areas
+# Table name: user_courses
 #
-#  id               :integer          not null, primary key
-#  master_career_id :integer
-#  area_id          :integer
-#  level            :integer
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  course_id  :integer
+#  score      :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

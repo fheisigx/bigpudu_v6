@@ -49,6 +49,35 @@ class UsersController < ApplicationController
 
   end
 
+  #NESTED Models (GOrila)
+
+  def update_courses
+    @user_course = current_user
+    count = 0
+    dcount = 0
+
+    params[:courses_ids].each do |c_id|
+      user_course = current_user.user_courses.new course_id: c_id, score: 0 
+      if user_course.save 
+        count += 1
+      else
+        dcount += 1
+      end
+      
+    end
+
+    flash[:success] = "Se agregaron #{count.to_s} nuevos ramos #{ '(' + dcount.to_s + ' ya estaban seleccionados)' if dcount > 0} "
+    redirect_to mis_ramos_path
+  end
+
+
+
+
+
+
+
+
+
   private
 	def user_params	
 		params.require(:user).permit(:name, :email, :password, :password_confirmation)

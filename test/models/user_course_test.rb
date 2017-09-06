@@ -1,18 +1,18 @@
 # == Schema Information
 #
-# Table name: career_courses
+# Table name: user_courses
 #
 #  id         :integer          not null, primary key
-#  career_id  :integer
+#  user_id    :integer
 #  course_id  :integer
-#  semester   :integer
+#  score      :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 require 'test_helper'
 
-class CareerCourseTest < ActiveSupport::TestCase
+class UserCourseTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

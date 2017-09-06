@@ -10,11 +10,6 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
-# Indexes
-#
-#  index_courses_on_area_id         (area_id)
-#  index_courses_on_institution_id  (institution_id)
-#
 
 require 'test_helper'
 

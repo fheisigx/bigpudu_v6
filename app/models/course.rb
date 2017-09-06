@@ -10,11 +10,6 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
-# Indexes
-#
-#  index_courses_on_area_id         (area_id)
-#  index_courses_on_institution_id  (institution_id)
-#
 
 class Course < ApplicationRecord
 
@@ -23,6 +18,8 @@ class Course < ApplicationRecord
 
 	has_many :career_courses, dependent: :destroy
 	has_many :careers, :through => :career_courses
+	has_many :user_courses
+	has_many :users, :through => :user_courses
 
 	validates :code_name, presence: true, uniqueness: { scope: :institution_id }
 	validates :name, presence: true

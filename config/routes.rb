@@ -137,9 +137,17 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new', as: :login
   post 'signin' => 'sessions#create', as: :signin
   delete 'logout' => 'sessions#destroy', as: :logout
-  
+  get 'mis_ramos' => 'sessions#mis_ramos'#, as: :my_courses
+  get 'mis_ramos/agregar' => 'sessions#agregar_ramos'
+  patch 'mis_ramos/crear_ramos' => 'sessions#crear_ramos'
 
-  resources :users
+  resources :users do
+    #put :update_career, on: :member
+
+    #delete :delete_course, on: :member
+    post :update_courses, on: :member
+  end
+
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
 

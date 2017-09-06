@@ -9,11 +9,6 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-# Indexes
-#
-#  index_career_courses_on_career_id  (career_id)
-#  index_career_courses_on_course_id  (course_id)
-#
 
 class CareerCourse < ApplicationRecord
 

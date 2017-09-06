@@ -9,11 +9,6 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
-# Indexes
-#
-#  index_master_career_areas_on_area_id           (area_id)
-#  index_master_career_areas_on_master_career_id  (master_career_id)
-#
 
 require 'test_helper'
 
