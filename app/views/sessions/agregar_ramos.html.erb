@@ -8,10 +8,11 @@
 	<th>Nombre Curso</th>
 </tr>
 
-<%= form_for(@user, url: { action: "crear_ramos" }) do |f| %>
+<%= form_for(@user, url: {controller: "users", action: "inscribir_ramos" }) do |f| %>
+	  <% hidden_field_tag "course_ids[]", nil %>
       <% @courses.each do |course| %>
          <tr>
-         <td> <%= check_box_tag "user[course_ids][]", course.id, f.object.courses.include?(course) %> </td>
+         <td> <%= check_box_tag "course_ids[]", course.id %> </td>
          <td> <%= course.code_name %> </td>
          <td> <%= course.name %> </td>
          </tr>
@@ -23,27 +24,5 @@
   </div>
 <% end %>
 
-
-</table>
-
-<table class="table">
-<tr class="header">
-	<th>Nombre Cod</th>
-	<th>Nombre Curso</th>
-	<th>Area</th>
-	<th>Acciones</th>
-</tr>
-
-
-<% @courses.each do |course| %>
-	<tr>
-		<td> <%= course.code_name %> </td>
-		<td> <%= course.name %> </td>
-		<td> <%= course.area.name %>  </td>
-		<td class="actions">
-			<%= link_to("Show", "#" ) %>
-		</td>
-	</tr>
-	<% end %>
 
 </table>

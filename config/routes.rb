@@ -139,7 +139,8 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy', as: :logout
   get 'mis_ramos' => 'sessions#mis_ramos'#, as: :my_courses
   get 'mis_ramos/agregar' => 'sessions#agregar_ramos'
-  patch 'mis_ramos/crear_ramos' => 'sessions#crear_ramos'
+  patch 'mis_ramos/inscribir' => 'users#inscribir_ramos'
+  patch 'mis_ramos/desinscribir' => 'users#desinscribir_ramo'
 
   resources :users do
     #put :update_career, on: :member

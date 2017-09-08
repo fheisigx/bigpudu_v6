@@ -21,24 +21,21 @@ class SessionsController < ApplicationController
 
 	end
 
-	#Cambiar mis ramos
 	def mis_ramos
-		@user = current_user
-		@institutions = Institution.includes(:courses)		
-		@user_courses = current_user.courses#.includes(:institution)
+		@institutions = Institution.all
+		@user_courses = UserCourse.where(active: true, user_id: current_user.id).includes(:course => :institution).order('institutions.name','courses.name')
 	end
 
 	def agregar_ramos
 		@user = current_user
+		active_courses = current_user.courses.joins(:user_courses).where(:user_courses =>{:active => true})
+
 		@institution = Institution.find(params[:institution_id])
-		@courses = @institution.courses.order_name	
+		@courses = @institution.courses.joins(:area).order('areas.name', 'courses.name').where.not(:courses =>{id: active_courses},:areas =>{name: ['Random']}) 
+		#byebug	
 	end
 
-	def crear_ramos
-		@user = current_user
-		@user.attributes = {'course_ids' => []}.merge(user_course_params || {})
-		redirect_to mis_ramos_path
-	end
+
 
 	#Cambiar mis horarios
 	def mi_horario
@@ -102,12 +99,6 @@ class SessionsController < ApplicationController
 	def about_us
 		
 	end
-
-	private
-
-		def user_course_params 
-    		params.require(:user).permit({course_ids: []})
-  		end
 		
 
 end

@@ -5,17 +5,21 @@
 			<table id="courses" class="table">
 				<thead>
 					<tr>
-						<th>Nombre</th>
 						<th>Institución</th>
-						<th class="text-center">Eliminar</th>
+						<th>Nombre</th>
+						<th class="text-center">Puntaje</th>
+						<th class="text-center">¿Dejar de  hacer clases?</th>
 					</tr>
 				</thead>
 				<tbody>
-					<% @user_courses.each do |course| %>
+					<% @user_courses.each do |user_course| %>
 						<tr>
-							<td><%= course.institution.name %></td>
-							<td><%= course.name %></td>
-							<td class="text-center"> </td>
+							<td><%= user_course.course.institution.name %></td>
+							<td><%= user_course.course.name %></td>
+							<td class="text-center"><%= user_course.score %></td>
+							<td class="actions text-center">
+							<%= link_to("Desiscribir", {:controller => 'users',:action => 'desinscribir_ramo', :id => user_course.id}, data: { confirm: "You sure?" }, method: :patch) %>
+							</td>
 						</tr>
 					<% end %>
 				</tbody>
@@ -28,7 +32,7 @@
 	<div class="col-md-3">
 		<%= form_tag mis_ramos_agregar_path, :method => 'get', class: "add-courses-form" do %>
 			<div class="form-group university">
-				<%= label_tag :institution_id, "Me gustaría hacer clases en ... " %>
+				<%= label_tag :institution_id, "Me gustaría inscribir más ramos para enseñar en ... " %>
 				<%= select_tag :institution_id, options_from_collection_for_select(@institutions, "id", "name"), {required: true, class: "form-control", prompt: "Elige la universidad"} %>
 			</div>
 

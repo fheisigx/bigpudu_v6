@@ -51,27 +51,34 @@ class UsersController < ApplicationController
 
   #NESTED Models (GOrila)
 
-  def update_courses
-    @user_course = current_user
-    count = 0
-    dcount = 0
+  def inscribir_ramos
+    #@user = current_user
+    #@user.attributes = {'course_ids' => []}.merge(user_course_params || {})
+    #@user.user_courses(user_course_params)
 
-    params[:courses_ids].each do |c_id|
-      user_course = current_user.user_courses.new course_id: c_id, score: 0 
-      if user_course.save 
-        count += 1
-      else
-        dcount += 1
+    #@user.user_courses.where(course_id: user_course_params['course_ids']).update_all(:active => true)
+    if params['course_ids'].nil?
+      flash[:warning] = "No seleccionaste ningún ramo"
+    else
+      params['course_ids'].each do |course|
+        user_course = UserCourse.find_or_initialize_by(user_id: current_user.id, course_id: course)
+        user_course.active = true
+        user_course.save
       end
-      
+      flash[:success] = "Ramos inscritos exitosamente"
     end
-
-    flash[:success] = "Se agregaron #{count.to_s} nuevos ramos #{ '(' + dcount.to_s + ' ya estaban seleccionados)' if dcount > 0} "
     redirect_to mis_ramos_path
   end
 
 
+  def desinscribir_ramo
 
+    user_course = UserCourse.find(params[:id])
+    user_course.update_attributes(active: false)
+      flash[:success] = "Ramo desinscrito exitosamente"
+      redirect_to mis_ramos_path
+
+  end
 
 
 
